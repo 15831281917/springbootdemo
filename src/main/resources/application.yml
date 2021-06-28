@@ -1,13 +1,34 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+    #context-path: /springboot
 spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/web_emp?characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/web_emp?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat,wall,log4j,config
+    max-active: 100
+    initial-size: 1
+    max-wait: 60000
+    min-idle: 1
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: select 'x'
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: true
+    max-open-prepared-statements: 50
+    max-pool-prepared-statement-per-connection-size: 20
   jpa:
     hibernate:
       ddl-auto: update #新增数据库连接必备的参数
