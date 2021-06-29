@@ -1,11 +1,18 @@
 package com.rjq.springbootdemo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Data
-public class User {
+@AllArgsConstructor
 
-    private int id;
+@ToString
+public class User implements Serializable {
+
+    //    private int id;
     private String username;
     private String password;
 
