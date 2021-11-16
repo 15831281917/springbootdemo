@@ -13,7 +13,7 @@
     </tr>
     <c:forEach items="${list}" var="user">
         <tr>${user.username}</tr>
-        <tr>${user.id}</tr>
+        <tr>${user.password}</tr>
     </c:forEach>
 </table>
 
