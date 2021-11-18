@@ -20,7 +20,8 @@ public class TestController {
     private String name;
     @Value("${age}")
     private String age;
-
+    @Value("${aaa}")
+    String aaa;
     @Resource
     private Student student;
 
@@ -42,6 +43,7 @@ public class TestController {
     @RequestMapping("/hello2")
     @ResponseBody
     public String hello2() {
+        System.out.println(aaa);
         return name + age;
     }
 
