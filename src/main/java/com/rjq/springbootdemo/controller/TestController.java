@@ -1,10 +1,10 @@
 package com.rjq.springbootdemo.controller;
 
-
 import com.rjq.springbootdemo.entity.Student;
 import com.rjq.springbootdemo.entity.User;
 import com.rjq.springbootdemo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@RefreshScope
 public class TestController {
     @Value("${name}")
     private String name;
@@ -41,21 +42,19 @@ public class TestController {
     @RequestMapping("/hello2")
     @ResponseBody
     public String hello2() {
-
-         return name + age;
+        return name + age;
     }
 
     @RequestMapping("/hello3")
     @ResponseBody
     public String hello3() {
-
         return student.getName() + student.getAge();
     }
 
     @RequestMapping("/listUser")
     public String listUser(Model model) {
         List<User> list = userMapper.findAll();
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
         return "listUser";
     }
 }

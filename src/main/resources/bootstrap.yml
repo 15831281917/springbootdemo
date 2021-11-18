@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active: nacos-service
+  application:
+    name: nacos-provide
+  cloud:
+    nacos:
+      config:
+        # 配置中心的地址
+        server-addr: 127.0.0.1:8848
+        # 配置文件的格式
+        file-extension: yaml
+        #命名空间
+        namespace: ${spring.profiles.active}
+        # 配置文件的环境
+        group: ${spring.profiles.active}
+        # 配置文件prefix
+        prefix: ${spring.application.name}
+        extension-configs[0]:
+          data-id: ${spring.cloud.nacos.config.prefix}-${spring.profiles.active}.yaml
+          group: ${spring.profiles.active}
+          refresh: true
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        namespace: ${spring.profiles.active}
+        group: ${spring.profiles.active}
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jpa:
+    hibernate:
+      ddl-auto: update #新增数据库连接必备的参数
+      show-sql: true  #日志中显示sql语句
+dubbo:
+  application:
+    id: nacos-provide-dubbo
+    name: nacos-provide-dubbo
+  registry:
+    address: nacos://${spring.cloud.nacos.config.server-addr}?namespace=${spring.profiles.active}
+  protocol:
+    name: dubbo
+    port: 27801
+  scan:
+    base-packages: springbootdemo
+  consumer:
+    retries: 0
+name: 张三
+age: 22
+student:
+  name: 李四
+  age: 23

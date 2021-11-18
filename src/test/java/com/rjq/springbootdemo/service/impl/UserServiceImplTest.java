@@ -6,12 +6,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rjq.springbootdemo.entity.User;
 import com.rjq.springbootdemo.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
 @SpringBootTest
 class UserServiceImplTest {
+
+    @Value("${aaa}")
+    String password;
 
     @Resource
     private UserService userService;
@@ -24,5 +28,10 @@ class UserServiceImplTest {
         page.setSize(1);
         IPage<User> listUser = userService.listUser(page);
         System.out.println(JSON.toJSONString(listUser));
+    }
+
+    @Test
+    void getPassword() {
+        System.out.println(password);
     }
 }
