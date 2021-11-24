@@ -16,6 +16,26 @@ class UserServiceImplTest {
 
     @Value("${aaa}")
     String password;
+    @Value("${xxl.job.admin.addresses}")
+    private String adminAddresses;
+
+    @Value("${xxl.job.executor.appName}")
+    private String appName;
+
+    @Value("${xxl.job.executor.ip:}")
+    private String ip;
+
+    @Value("${xxl.job.executor.port}")
+    private int port;
+
+    @Value("${xxl.job.executor.accessToken:}")
+    private String accessToken;
+
+    @Value("${xxl.job.executor.logPath}")
+    private String logPath;
+
+    @Value("${xxl.job.executor.logRetentionDays}")
+    private int logRetentionDays;
 
     @Resource
     private UserService userService;
@@ -33,5 +53,16 @@ class UserServiceImplTest {
     @Test
     void getPassword() {
         System.out.println(password);
+    }
+
+    @Test
+    void jobTest() {
+        System.out.println(adminAddresses);
+        System.out.println(appName);
+        System.out.println(ip);
+        System.out.println(port);
+        System.out.println(accessToken);
+        System.out.println(logPath);
+        System.out.println(logRetentionDays);
     }
 }
